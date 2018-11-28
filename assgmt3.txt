@@ -1,0 +1,52 @@
+ constructor(){
+    super();
+    this.state={
+      word:'',
+      array: [],
+      consNo:0,
+      vowelNo:0,
+      characNo:0
+     
+    };
+  }
+
+
+
+ analyzeWord=()=>{
+    this.setState({array:this.state.word.split("")},
+    ()=> {
+      this.setState({countL:this.state.array.length})
+
+ 
+        for(var i=0; i<this.state.array.length; i++){
+          const checker=['a','e','i','o','u','A','E','I','O','U'];
+          const letter=this.state.array[i];
+          if (checker.includes(letter)){
+            this.setState({vowelNo: this.state.vowelNo+=1})
+          }
+       else{
+        this.setState({consNo: this.state.consNo+=1})
+       }
+  
+    }
+
+      });
+    }
+
+render() {
+    return (
+      <View style={styles.container}>
+        <Text>{styles.title}>A Word Analyzer</Text>
+        <Text>Word</Text>
+        <TextInput style ={{backgroundColor: 'white', textAlign: "center", 
+padding: 10}}  onChangeText={(word)=>this.setState({word})} placeholder="Key in a word"/>
+        <Button onPress={() =>this.analyzeWord()} title="Analyze"></Button>
+
+</View>
+      
+    );
+  }
+      console.log("Word			:" + word);
+      console.log("No of Consonants	:" + consNo);
+      console.log("No of Vowels		:" + vowelNo);
+      console.log("No of Characters	:" + characNo);
